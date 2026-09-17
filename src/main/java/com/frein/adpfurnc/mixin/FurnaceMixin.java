@@ -1,5 +1,6 @@
 package com.frein.adpfurnc.mixin;
 
+import com.frein.adpfurnc.BulkStorage;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
@@ -11,9 +12,10 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import com.frein.adpfurnc.ModTags;
 
+import static com.frein.adpfurnc.getBulk.getBulkAmount;
+
 @Mixin(AbstractFurnaceBlockEntity.class)
 public class FurnaceMixin {
-
 	@ModifyArg(
 			method = "burn",
 			at = @At(
@@ -27,27 +29,24 @@ public class FurnaceMixin {
 			@Local NonNullList<ItemStack> nonNullList
 	) {
 		ItemStack result = (ItemStack) stack;
-		ItemStack fuel = nonNullList.get(1);
-
-		result.grow(getBulkAmount(fuel) - 1);
+		result.grow(BulkStorage.get(nonNullList) - 1);
 
 		return result;
 	}
-	private static int getBulkAmount(ItemStack fuel) {
-		if (fuel.is(ModTags.Items.BULK_1)) {
-			return 1;
-		}
-		if (fuel.is(ModTags.Items.BULK_2)) {
-			return 2;
-		}
-		if (fuel.is(ModTags.Items.BULK_3)) {
-			return 3;
-		}
-		if (fuel.is(ModTags.Items.BULK_4)) {
-			return 4;
-		}
+	@ModifyArg(
+			method = "burn",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"
+			),
+			index = 0
+	)
+	private static int modifyExistingOutput(
+			int amount,
+			@Local NonNullList<ItemStack> nonNullList
+	) {
+		ItemStack fuel = nonNullList.get(1);
 
-
-		return 1;
+		return getBulkAmount(fuel);
 	}
 }
