@@ -10,6 +10,5 @@ public class AdaptiveSmeltingClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		LOGGER.info("adapting the furnaces..");
 	}
 }
