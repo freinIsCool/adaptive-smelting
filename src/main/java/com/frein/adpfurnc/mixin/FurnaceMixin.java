@@ -9,6 +9,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+import com.frein.adpfurnc.ModTags;
+
 @Mixin(AbstractFurnaceBlockEntity.class)
 public class FurnaceMixin {
 
@@ -32,9 +34,19 @@ public class FurnaceMixin {
 		return result;
 	}
 	private static int getBulkAmount(ItemStack fuel) {
-		if (fuel.is(Items.COAL)) {
-			return 64;
+		if (fuel.is(ModTags.Items.BULK_1)) {
+			return 1;
 		}
+		if (fuel.is(ModTags.Items.BULK_2)) {
+			return 2;
+		}
+		if (fuel.is(ModTags.Items.BULK_3)) {
+			return 3;
+		}
+		if (fuel.is(ModTags.Items.BULK_4)) {
+			return 4;
+		}
+
 
 		return 1;
 	}
