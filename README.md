@@ -1,6 +1,3 @@
-# THE MOD ISINT DONE YET!
-
-
 # Adaptive smelting
 
 
@@ -16,3 +13,5 @@ you put coal in and it bulk smelts 2 items at once
 * coal: 2
 * wood (all types): 1
 * everything else: 1
+
+*for developers see*

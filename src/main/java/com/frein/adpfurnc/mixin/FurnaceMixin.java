@@ -33,7 +33,7 @@ public class FurnaceMixin {
 			method = "burn",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/item/ItemStack;shrink(I)V"
+					target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"
 			),
 			index = 0
 	)
