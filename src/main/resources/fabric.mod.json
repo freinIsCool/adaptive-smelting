@@ -8,8 +8,8 @@
 		"Frein"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/freinIsCool/adaptive-smelting",
+		"sources": "https://github.com/freinIsCool/adaptive-smelting"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/adaptive-smelting/Icon.png",
