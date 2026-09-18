@@ -4,15 +4,10 @@ import com.frein.adpfurnc.BulkStorage;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-
-import com.frein.adpfurnc.ModTags;
-
-import static com.frein.adpfurnc.getBulk.getBulkAmount;
 
 @Mixin(AbstractFurnaceBlockEntity.class)
 public class FurnaceMixin {
@@ -33,6 +28,7 @@ public class FurnaceMixin {
 
 		return result;
 	}
+
 	@ModifyArg(
 			method = "burn",
 			at = @At(
@@ -45,8 +41,6 @@ public class FurnaceMixin {
 			int amount,
 			@Local NonNullList<ItemStack> nonNullList
 	) {
-		ItemStack fuel = nonNullList.get(1);
-
-		return getBulkAmount(fuel);
+		return BulkStorage.get(nonNullList);
 	}
 }

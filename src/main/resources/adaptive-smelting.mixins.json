@@ -3,6 +3,7 @@
   "package": "com.frein.adpfurnc.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ControlSmeltingMixin",
     "FurnaceMixin",
     "RecordFuelAccessor",
     "RecordFuelMixin"
