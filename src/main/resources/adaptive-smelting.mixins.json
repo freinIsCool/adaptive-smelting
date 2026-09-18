@@ -3,8 +3,9 @@
   "package": "com.frein.adpfurnc.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "RecordFuelMixin",
-    "FurnaceMixin"
+    "FurnaceMixin",
+    "RecordFuelAccessor",
+    "RecordFuelMixin"
   ],
   "injectors": {
     "defaultRequire": 1

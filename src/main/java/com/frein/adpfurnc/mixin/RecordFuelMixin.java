@@ -4,12 +4,14 @@ package com.frein.adpfurnc.mixin;
 import com.frein.adpfurnc.AdaptiveFurnace;
 import com.frein.adpfurnc.BulkStorage;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -19,20 +21,7 @@ import static com.frein.adpfurnc.getBulk.getBulkAmount;
 
 
 @Mixin(AbstractFurnaceBlockEntity.class)
-public class RecordFuelMixin implements AdaptiveFurnace {
-
-    @Unique
-    private int adaptiveSmelting$bulkAmount = 1;
-
-    @Override
-    public int adaptiveSmelting$getBulkAmount() {
-        return adaptiveSmelting$bulkAmount;
-    }
-
-    @Override
-    public void adaptiveSmelting$setBulkAmount(int amount) {
-        adaptiveSmelting$bulkAmount = amount;
-    }
+public class RecordFuelMixin {
 
     @Inject(
             method = "serverTick",
@@ -52,8 +41,16 @@ public class RecordFuelMixin implements AdaptiveFurnace {
         ItemStack fuel = furnace.getItem(1);
         int bulkAmount = getBulkAmount(fuel);
 
-        BulkStorage.set(furnace.item, bulkAmount);
+        NonNullList<ItemStack> items =
+                ((RecordFuelAccessor) (Object) furnace).adaptiveSmelting$getItems();
 
-        int adaptiveSmelting$bulkAmount = 1;
+        BulkStorage.set(items, bulkAmount);
     }
+}
+
+@Mixin(AbstractFurnaceBlockEntity.class)
+interface RecordFuelAccessor {
+
+    @Accessor("items")
+    NonNullList<ItemStack> adaptiveSmelting$getItems();
 }
