@@ -6,7 +6,8 @@
     "ControlSmeltingMixin",
     "FurnaceMixin",
     "RecordFuelAccessor",
-    "RecordFuelMixin"
+    "RecordFuelMixin",
+    "PersistOnRejoin"
   ],
   "injectors": {
     "defaultRequire": 1

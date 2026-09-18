@@ -1,6 +1,7 @@
 package com.frein.adpfurnc.mixin;
 
 import com.frein.adpfurnc.BulkStorage;
+import com.frein.adpfurnc.SmeltingUtils;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
@@ -24,8 +25,7 @@ public class FurnaceMixin {
 			@Local NonNullList<ItemStack> nonNullList
 	) {
 		ItemStack result = (ItemStack) stack;
-		result.grow(BulkStorage.get(nonNullList) - 1);
-
+		result.grow(SmeltingUtils.getSmeltAmount(nonNullList) - 1);
 		return result;
 	}
 
@@ -41,7 +41,7 @@ public class FurnaceMixin {
 			int amount,
 			@Local NonNullList<ItemStack> nonNullList
 	) {
-		return BulkStorage.get(nonNullList);
+		return SmeltingUtils.getSmeltAmount(nonNullList);
 	}
 
 }

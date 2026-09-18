@@ -1,6 +1,7 @@
 package com.frein.adpfurnc.mixin;
 
 import com.frein.adpfurnc.BulkStorage;
+import com.frein.adpfurnc.SmeltingUtils;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -53,9 +54,6 @@ public class ControlSmeltingMixin {
         return BulkStorage.get(nonNullList);
     }
     private static int getSmeltAmount(NonNullList<ItemStack> nonNullList) {
-        return Math.min(
-                BulkStorage.get(nonNullList),
-                nonNullList.get(0).getCount()
-        );
+        return SmeltingUtils.getSmeltAmount(nonNullList);
     }
 }

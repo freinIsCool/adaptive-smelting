@@ -39,10 +39,16 @@ public class RecordFuelMixin {
             CallbackInfo ci
     ) {
         ItemStack fuel = furnace.getItem(1);
-        int bulkAmount = getBulkAmount(fuel);
 
         NonNullList<ItemStack> items =
                 ((RecordFuelAccessor) (Object) furnace).adaptiveSmelting$getItems();
+
+        int bulkAmount = getBulkAmount(fuel);
+
+        AdaptiveFurnace adaptiveFurnace =
+                (AdaptiveFurnace) (Object) furnace;
+
+        adaptiveFurnace.adaptiveSmelting$setBulkAmount(bulkAmount);
 
         BulkStorage.set(items, bulkAmount);
     }
