@@ -7,6 +7,9 @@
 for example:\
 you put coal in and it bulk smelts 2 items at once
 
+<img width="344" height="326" alt="ezgif-3081a448cd704015" src="https://github.com/user-attachments/assets/9bcee8d1-5e9b-4530-bdeb-4bcfd6d73590" />
+
+
 ## all supported materials
 * lava: 4
 * kelp (block): 3
