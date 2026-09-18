@@ -1,18 +1,18 @@
 {
 	"schemaVersion": 1,
 	"id": "adaptive-smelting",
-	"version": "${version}",
+	"version": "1.0.0",
 	"name": "Adaptive smelting",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A simple mod that adds bulk smelting depending on the current fuel type",
 	"authors": [
-		"Me!"
+		"Frein"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/adaptive-smelting/icon.png",
+	"icon": "assets/adaptive-smelting/Icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
